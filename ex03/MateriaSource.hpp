@@ -1,43 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Ice.hpp                                            :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcutura <mcutura@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/21 19:36:35 by mcutura           #+#    #+#             */
-/*   Updated: 2023/08/21 19:36:35 by mcutura          ###   ########.fr       */
+/*   Created: 2023/08/21 21:05:15 by mcutura           #+#    #+#             */
+/*   Updated: 2023/08/21 21:05:15 by mcutura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICE_HPP
-# define ICE_HPP
+#ifndef MATERIASOURCE_HPP
+# define MATERIASOURCE_HPP
 
 # include <iostream>
 # include <string>
+# include "IMateriaSource.hpp"
 # include "AMateria.hpp"
-# include "ICharacter.hpp"
 
-class Ice : public AMateria
+class MateriaSource : public IMateriaSource
 {
 	public:
 		/* Constructors */
-		Ice();
-		Ice(std::string const & type);
-		Ice(Ice const & copy);
+		MateriaSource();
+		MateriaSource(MateriaSource const &copy);
 
 		/* Destructor */
-		~Ice();
+		~MateriaSource();
 
-		/* Getters/Setters */
-		std::string const & getType() const; 
+		/* Operators */
+		MateriaSource & operator=(MateriaSource const &assign);
 
 		/* Methods */
-		AMateria* clone() const;
-		void use(ICharacter& target);
+		void learnMateria(AMateria* materia);
+		AMateria* createMateria(std::string const & type);
 
 	private:
-
+		AMateria*	_materia_memory[4];
+		int			_free_slot;
 };
 
 #endif

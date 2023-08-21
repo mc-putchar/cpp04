@@ -18,13 +18,12 @@ Cure::Cure() : AMateria(std::string("cure"))	{}
 Cure::Cure(std::string const & type) : AMateria(type)	{}
 
 Cure::Cure(Cure const & copy) : AMateria()
-{}
+{
+	*this = copy;
+}
 
 /* Destructor */
 Cure::~Cure()	{}
-
-/* Operators */
-Cure & Cure::operator=(Cure const & assign)	{} //TODO
 
 /* Getters/Setters */
 std::string const & Cure::getType() const

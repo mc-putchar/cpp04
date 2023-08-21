@@ -13,17 +13,25 @@
 #include "AMateria.hpp"
 
 /* Constructors */
-AMateria::AMateria()	{}
+AMateria::AMateria() : _type("")	{}
 
 AMateria::AMateria(std::string const & type) : _type(type)	{}
 
-AMateria::AMateria(AMateria const &copy)	{} //TODO
+AMateria::AMateria(AMateria const &copy)
+{
+	*this = copy;
+}
 
 /* Destructor */
 AMateria::~AMateria()	{}
 
 /* Operators */
-AMateria & AMateria::operator=(AMateria const &assign)	{} //TODO
+AMateria & AMateria::operator=(AMateria const &assign)
+{
+	if (this != &assign)
+		return *assign.clone();
+	return *this;
+}
 
 /* Getters/Setters */
 std::string const & AMateria::getType() const
@@ -32,4 +40,8 @@ std::string const & AMateria::getType() const
 }
 
 /* Methods */
-void AMateria::use(ICharacter& target)	{} //TODO
+void AMateria::use(ICharacter& target)
+{
+	std::cout << "* " << this->getType() << " used on " << target 
+			<< " *" << std::endl;
+}

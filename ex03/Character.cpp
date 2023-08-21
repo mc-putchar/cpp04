@@ -18,12 +18,20 @@ Character::Character()	{}
 Character::Character(std::string const & name) : _name(name)
 {
 	_free_slot = 0;
+	for (int i = 0; i < 4; ++i)
+		_inventory[i] = NULL;
 }
 
 Character::Character(Character const &copy)
 {
 	_name = copy.getName();
-} // TODO
+	for (int i = 0; i < 4; ++i)
+	{
+		if (_inventory[i])
+			delete _inventory[i];
+		_inventory[i] = copy._inventory[i];
+	}
+}
 
 /* Destructor */
 Character::~Character()
@@ -35,7 +43,19 @@ Character::~Character()
 
 /* Operators */
 Character & Character::operator=(Character const &assign)
-{} // TODO
+{
+	if (this != &assign)
+	{
+		_name = assign.getName();
+		for (int i = 0; i < 4; ++i)
+		{
+			if (_inventory[i])
+				delete _inventory[i];
+			_inventory[i] = assign._inventory[i];
+		}
+	}
+	return *this;
+}
 
 /* Getters/Setters */
 std::string const & Character::getName() const
@@ -68,4 +88,10 @@ void Character::use(int idx, ICharacter& target)
 {
 	if (idx >= 0 && idx < 4 && _inventory[idx])
 		_inventory[idx]->use(target);
+}
+
+std::ostream & operator<<(std::ostream& stream, const ICharacter& target)
+{
+	stream << target.getName();
+	return stream;
 }

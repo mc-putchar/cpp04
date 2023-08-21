@@ -14,11 +14,12 @@
 NAME := a.out
 # --- Sources ---
 SRCS := main.cpp AMateria.cpp Cure.cpp Ice.cpp
-SRCS += Character.cpp
+SRCS += Character.cpp MateriaSource.cpp
 # --- Objects ---
-OBJS := $(patsubst %.cpp, %.o, $(SRCS))
+OBJS := $(SRCS:%.cpp=%.o)
 # --- Headers ---
-HDRS := AMateria.hpp
+HDRS := AMateria.hpp Cure.hpp Ice.hpp ICharacter.hpp Character.hpp
+HDRS += IMateriaSource.hpp MateriaSource.hpp
 # --- Compilers ---
 CC := gcc
 CXX := g++

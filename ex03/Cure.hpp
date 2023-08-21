@@ -28,9 +28,6 @@ class Cure : public AMateria
 
 		/* Destructor */
 		~Cure();
-
-		/* Operators */
-		Cure & operator=(Cure const & assign);
 		
 		/* Getters/Setters */
 		std::string const & getType() const; 

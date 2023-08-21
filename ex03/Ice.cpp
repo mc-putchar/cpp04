@@ -18,13 +18,12 @@ Ice::Ice() : AMateria(std::string("ice"))	{}
 Ice::Ice(std::string const & type) : AMateria(type)	{}
 
 Ice::Ice(Ice const & copy) : AMateria()
-{}
+{
+	*this = copy;
+}
 
 /* Destructor */
 Ice::~Ice()	{}
-
-/* Operators */
-Ice & Ice::operator=(Ice const & assign)	{} //TODO
 
 /* Getters/Setters */
 std::string const & Ice::getType() const
